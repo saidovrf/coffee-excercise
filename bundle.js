@@ -2,6 +2,8 @@
 (function() {
   var onLoad;
 
+  document.addEventListener('DOMContentLoaded', onLoad);
+
   onLoad = function() {
     var count, date, dateNode, i, len, post, postButton, posts, postsBlock, sendPost, text, textChanged, textNode, validateDate, wrapper;
     date = document.getElementById('date');
@@ -67,6 +69,21 @@
         } else {
           storage = [post];
         }
+        // Create post wrapper
+        wrapper = document.createElement('div');
+        wrapper.className = "uk-card uk-card-secondary uk-card-body uk-card-hover";
+        // Fill text field
+        textNode = document.createElement('p');
+        textNode.innerHTML = post.text;
+        // Fill date field
+        dateNode = document.createElement('p');
+        dateNode.className = "uk-text-meta uk-margin-remove-top";
+        dateNode.innerHTML = post.date;
+        // Adding text and date fields to wrapper
+        wrapper.appendChild(textNode);
+        wrapper.appendChild(dateNode);
+        // Adding wrapper to posts block
+        postsBlock.appendChild(wrapper);
         localStorage.setItem('diary', JSON.stringify(storage));
         date.value = '';
         return text.value = '';
@@ -87,7 +104,5 @@
     text.addEventListener('keyup', textChanged);
     return postButton.addEventListener('click', sendPost);
   };
-
-  document.addEventListener('DOMContentLoaded', onLoad);
 
 }).call(this);
