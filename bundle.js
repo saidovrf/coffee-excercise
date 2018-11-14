@@ -13,6 +13,8 @@
     posts = localStorage.getItem('diary');
     if (posts) {
       posts = JSON.parse(posts);
+    } else {
+      posts = [];
     }
 // Showing all posts
     for (i = 0, len = posts.length; i < len; i++) {

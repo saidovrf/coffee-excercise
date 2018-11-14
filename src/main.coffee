@@ -10,6 +10,8 @@ onLoad = ->
 
   if posts
     posts = JSON.parse posts
+  else
+    posts = []
 
   # Showing all posts
   for post in posts
